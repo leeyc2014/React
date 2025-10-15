@@ -7,6 +7,8 @@ export default function MyListCard({title, imgUrl, content}) {
     const [dcnt, setDcnt] = useState(0);
     const add = () => {
         setCnt(cnt + 1);
+        //setCnt(prev => prev + 1);     여러 번 사용 시 add 함수 내에서 상태 변화 후 증가
+        //setCnt(scnt => scnt + 1);
     }
     const sub = () => {
         setDcnt(dcnt + 1);
