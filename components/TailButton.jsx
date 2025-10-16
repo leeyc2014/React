@@ -1,6 +1,6 @@
 const BTStyle = {
     blue: {
-        base: "bg-blue-600",
+        base: "bg-blue-700",
         hover: "hover:bg-blue-800"
     },
     orange: {
@@ -15,8 +15,8 @@ const BTStyle = {
 export default function TailButton({color, caption, onHandle}) {
     const btStyle = BTStyle[color];
     return (
-        <div className={`flex justify-center items-center cursor-pointer w-2/7 h-2/7 ${btStyle.base} ${btStyle.hover} rounded text-white hover:font-bold`} onClick={onHandle}>
+        <button className={`cursor-pointer ${btStyle.base} ${btStyle.hover} rounded text-white hover:font-bold px-4 py-2`} onClick={onHandle}>
             {caption}
-        </div>
+        </button>
     )
 }

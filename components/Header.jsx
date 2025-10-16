@@ -8,6 +8,7 @@ export default function Header() {
                 <ul className='flex space-x-4'>
                     <li className='hover:text-blue-200 font-bold cursor-pointer'>홈</li>
                     <li className='hover:text-blue-200 font-bold cursor-pointer'>로또</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>분류별 조회</li>
                 </ul>
             </nav>
         </header>
