@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from "react";
 import Header from './components/Header'
 import Footer from './components/Footer'
 //import Clock from './02/MyClock'
@@ -9,18 +10,20 @@ import Footer from './components/Footer'
 //import FoodMain from './07/FoodMain'
 import MyEffect from './08/MyEffect'
 
-function App({}) {
+function App() {
+  const [page, setPage] = useState(null);
   return (
     <div className='w-full h-screen flex flex-col overflow-y-hidden'>
       {/* <MyDiv1 /> */}
       {/* <MyDiv1_1 /> */}
       {/*<MyList />*/}
-      <Header />
-      <main className='container mx-auto flex justify-center items-center flex-grow overflow-y-auto'>
+      <Header setPage={setPage} />
+      <main className='container mx-auto flex flex-grow justify-center overflow-y-auto'>
         {/* <FoodMain /> */}
         {/* {page} */}
         {/* <Clock /> */}
-        <MyEffect />
+        {/* <MyEffect /> */}
+        {page}
       </main>
       <Footer />
     </div>
