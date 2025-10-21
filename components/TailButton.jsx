@@ -12,7 +12,7 @@ const BTStyle = {
         hover: "hover:bg-lime-800"
     }
 }
-export default function TailButton({color, caption, onHandle}) {
+export default function TailButton({ color, caption, onHandle }) {
     const btStyle = BTStyle[color];
     return (
         <button className={`cursor-pointer ${btStyle.base} ${btStyle.hover} rounded text-white hover:font-bold px-4 py-2`} onClick={onHandle}>
