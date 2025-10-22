@@ -8,7 +8,8 @@ import Footer from './components/Footer'
 //import MyList from './04/MyList'
 //import Lotto from './06/Lotto'
 //import FoodMain from './07/FoodMain'
-import MyEffect from './08/MyEffect'
+//import MyEffect from './08/MyEffect'
+//import BoxOffice from './09/BoxOffice';
 
 function App() {
   const [page, setPage] = useState(null);
@@ -24,6 +25,7 @@ function App() {
         {/* <Clock /> */}
         {/* <MyEffect /> */}
         {page}
+        {/* <BoxOffice /> */}
       </main>
       <Footer />
     </div>
