@@ -11,6 +11,7 @@ const getYesterday = () => {
 export default function BoxOffice() {
     const [data, setData] = useState([]);
     const [info, setInfo] = useState();
+    const [img, setImg] = useState();
 
     const handleSelectDt = (e) => {
         let dt = e.target.value.replaceAll('-', '');
@@ -34,6 +35,7 @@ export default function BoxOffice() {
     const handleShowInfo = (mv) => {
         let tm = `[${mv.rankOldAndNew} : ${mv.openDt}] ${mv.movieNm}, 상영한 스크린수 : ${parseInt(mv.scrnCnt).toLocaleString()}, 상영횟수 : ${parseInt(mv.showCnt).toLocaleString()}`;
         setInfo(tm);
+        getPoster(mv.movieNm);
     }
 
     const getFetchData = (dt) => {
@@ -45,6 +47,24 @@ export default function BoxOffice() {
             .then(resp => resp.json())
             .then(data => {
                 setData(data.boxOfficeResult.dailyBoxOfficeList)
+            })
+            .catch(err => console.log(err));
+    }
+
+    const getPoster = (title) => {
+        const tmdapi = import.meta.env.VITE_MV_IMG_API;
+        let url = `https://api.themoviedb.org/3/search/movie?api_key=${tmdapi}&query=${title}`;
+        fetch(url)
+            .then(resp => resp.json())
+            .then(data => {
+                const poster_path = data.results[0].poster_path;
+                if (poster_path) {
+                    const Poster = `https://image.tmdb.org/t/p/w500${poster_path}`;
+                    // JSX 이미지 요소를 img 상태에 저장
+                    setImg(<img src={Poster} alt={title} className="w-60 mx-auto mb-4" />);
+                } else {
+                    setImg(<p>포스터 없음</p>);
+                }
             })
             .catch(err => console.log(err));
     }
@@ -115,7 +135,8 @@ export default function BoxOffice() {
                     ))}
                 </tbody>
             </table>
-            <div className="text-center font-bold w-9/10 bg-indigo-300 ml-10 mt-15 p-5 text-white rounded-2xl">
+            <div className="flex flex-row text-2xl text-center items-center font-bold w-9/10 bg-gray-300 ml-10 mt-15 p-5 rounded-2xl gap-4">
+                {img}
                 {info}
             </div>
         </div>
