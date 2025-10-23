@@ -10,6 +10,8 @@ import Footer from './components/Footer'
 //import FoodMain from './07/FoodMain'
 //import MyEffect from './08/MyEffect'
 //import BoxOffice from './09/BoxOffice';
+//import Traffic from "../10/Traffic"
+import MyRef from './11/MyRef';
 
 function App() {
   const [page, setPage] = useState(null);
@@ -24,8 +26,9 @@ function App() {
         {/* {page} */}
         {/* <Clock /> */}
         {/* <MyEffect /> */}
-        {page}
+        {/* {page} */}
         {/* <BoxOffice /> */}
+        <MyRef />
       </main>
       <Footer />
     </div>

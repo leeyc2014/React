@@ -38,17 +38,27 @@ export default function BoxOffice() {
         getPoster(mv.movieNm);
     }
 
-    const getFetchData = (dt) => {
+    // const getFetchData = (dt) => {
+    //     const apiKey = import.meta.env.VITE_MV_API;
+    //     const baseUrl = 'http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?';
+    //     let url = `${baseUrl}key=${apiKey}&targetDt=${dt}`;
+
+    //     fetch(url)
+    //         .then(resp => resp.json())
+    //         .then(data => {
+    //             setData(data.boxOfficeResult.dailyBoxOfficeList)
+    //         })
+    //         .catch(err => console.log(err));
+    // }
+
+    const getFetchData = async (dt) => {
         const apiKey = import.meta.env.VITE_MV_API;
         const baseUrl = 'http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?';
         let url = `${baseUrl}key=${apiKey}&targetDt=${dt}`;
 
-        fetch(url)
-            .then(resp => resp.json())
-            .then(data => {
-                setData(data.boxOfficeResult.dailyBoxOfficeList)
-            })
-            .catch(err => console.log(err));
+        const resp = await fetch(url);
+        const data = await resp.json();
+        setData(data.boxOfficeResult.dailyBoxOfficeList);
     }
 
     const getPoster = (title) => {
