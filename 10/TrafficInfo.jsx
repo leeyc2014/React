@@ -2,6 +2,7 @@
 export default function TrafficInfo({ infoData }) {
 
     const show = ["사고건수", "사망자수", "중상자수", "경상자수", "부상신고자수"]
+    console.log(infoData)
 
     return (
          <div className="mt-6 flex flex-col gap-6">

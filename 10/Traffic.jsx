@@ -23,7 +23,13 @@ export default function Traffic() {
     // 사고 데이터
     const[res, setRes] = useState();
 
-    const getFetchData = () => {
+    const getFetchData = async () => {
+        // const apikey = import.meta.env.VITE_MV_DATA_API;
+        // let url = `https://api.odcloud.kr/api/15070282/v1/uddi:8449c5d7-8be5-4712-9093-968fc0b2d9fc?page=1&perPage=117&returnType=json&serviceKey=${apikey}`;
+
+        // const resp = await fetch(url);
+        // const data = await resp.json();
+        // setTdata(data.data);
         setTdata(trafficData);
     }
 

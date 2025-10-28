@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 //import MyEffect from './08/MyEffect'
 //import BoxOffice from './09/BoxOffice';
 //import Traffic from "../10/Traffic"
-import MyRef from './11/MyRef';
+//import MyRef from './11/MyRef';
 
 function App() {
   const [page, setPage] = useState(null);
@@ -22,13 +22,12 @@ function App() {
       {/*<MyList />*/}
       <Header setPage={setPage} />
       <main className='container mx-auto flex flex-grow justify-center overflow-y-auto'>
+        {page}
         {/* <FoodMain /> */}
-        {/* {page} */}
         {/* <Clock /> */}
         {/* <MyEffect /> */}
-        {/* {page} */}
         {/* <BoxOffice /> */}
-        <MyRef />
+        {/* <MyRef /> */}
       </main>
       <Footer />
     </div>
