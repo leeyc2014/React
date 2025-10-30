@@ -5,6 +5,7 @@ import BoxOffice from "../09/BoxOffice"
 import Traffic from "../10/Traffic"
 import MyCal from "../12/MyCal"
 import MyGallery from "../13/MyGallery"
+import MyFestGallery from "../14/MyFestGallery"
 
 export default function Header({setPage}) {
     return (
@@ -21,6 +22,7 @@ export default function Header({setPage}) {
                     <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<Traffic />)}>교통사고</li>
                     <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<MyCal />)}>사칙연산</li>
                     <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<MyGallery />)}>관광사진정보</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<MyFestGallery />)}>축제사진정보</li>
                 </ul>
             </nav>
         </header>
