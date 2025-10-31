@@ -7,22 +7,22 @@ import MyCal from "../12/MyCal"
 import MyGallery from "../13/MyGallery"
 import MyFestGallery from "../14/MyFestGallery"
 
-export default function Header({setPage}) {
+export default function Header() {
     return (
         <>
         <header className='bg-blue-600 text-white shadow-md'>
             <nav className='container h-15 mx-auto flex justify-between items-center'>
                 <div className='text-2xl font-bold text-blue-50'>KDT03</div>
                 <ul className='flex space-x-4'>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(null)}>홈</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<Clock />)}>시계</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<Lotto />)}>로또</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<FoodMain />)}>분류별 조회</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<BoxOffice />)}>일일박스오피스</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<Traffic />)}>교통사고</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<MyCal />)}>사칙연산</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<MyGallery />)}>관광사진정보</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer' onClick={() => setPage(<MyFestGallery />)}>축제사진정보</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>홈</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>시계</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>로또</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>분류별 조회</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>일일박스오피스</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>교통사고</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>사칙연산</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>관광사진정보</li>
+                    <li className='hover:text-blue-200 font-bold cursor-pointer'>축제사진정보</li>
                 </ul>
             </nav>
         </header>
