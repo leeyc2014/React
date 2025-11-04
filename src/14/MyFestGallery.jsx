@@ -1,6 +1,7 @@
 import TailButton from "../components/TailButton";
 import TailCard from "../components/TailCard"
 import { useState, useEffect, useRef } from "react"
+import { Link } from "react-router-dom";
 
 export default function MyFestGallery() {
     const [fdata, setFdata] = useState([]);
@@ -44,11 +45,9 @@ export default function MyFestGallery() {
                     </select>
                 </div>               
             </div>
-            {filteredData.map((item, i) => (<a href={item.HOMEPAGE_URL} target="_blank" key={i}>
             <div className="w-9/10 m-4 grid grid-cols-2 md:grid-cols-3 gap-4">
-                {filteredData && filteredData.map((item, idx) => (<TailCard key={idx} imgUrl={item.MAIN_IMG_THUMB} title={item.TITLE} info={item.TRFC_INFO} secondInfo={item.USAGE_DAY_WEEK_AND_TIME} />))}
+                {filteredData && filteredData.map((item, idx) => (<Link to="/MyFestGallery/contents" state={{contents:item}} key={idx}><TailCard key={idx} imgUrl={item.MAIN_IMG_THUMB} title={item.TITLE} info={item.TRFC_INFO} secondInfo={item.USAGE_DAY_WEEK_AND_TIME} /></Link>))}
             </div>
-            </a>))}
         </div>
     )
 }

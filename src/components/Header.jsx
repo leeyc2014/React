@@ -1,11 +1,4 @@
-import Clock from "../02/MyClock"
-import Lotto from "../06/Lotto"
-import FoodMain from "../07/FoodMain"
-import BoxOffice from "../09/BoxOffice"
-import Traffic from "../10/Traffic"
-import MyCal from "../12/MyCal"
-import MyGallery from "../13/MyGallery"
-import MyFestGallery from "../14/MyFestGallery"
+import { Link } from "react-router-dom"
 
 export default function Header() {
     return (
@@ -14,15 +7,13 @@ export default function Header() {
             <nav className='container h-15 mx-auto flex justify-between items-center'>
                 <div className='text-2xl font-bold text-blue-50'>KDT03</div>
                 <ul className='flex space-x-4'>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>홈</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>시계</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>로또</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>분류별 조회</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>일일박스오피스</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>교통사고</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>사칙연산</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>관광사진정보</li>
-                    <li className='hover:text-blue-200 font-bold cursor-pointer'>축제사진정보</li>
+                    <Link to="/" className='hover:text-blue-200 font-bold cursor-pointer'>홈</Link>
+                    <Link to="/Lotto" className='hover:text-blue-200 font-bold cursor-pointer'>로또</Link>
+                    <Link to="/BoxOffice" className='hover:text-blue-200 font-bold cursor-pointer'>일일박스오피스</Link>
+                    <Link to="/Traffic" className='hover:text-blue-200 font-bold cursor-pointer'>교통사고</Link>
+                    <Link to="/MyGallery" className='hover:text-blue-200 font-bold cursor-pointer'>관광사진정보</Link>
+                    <Link to="/MyFestGallery" className='hover:text-blue-200 font-bold cursor-pointer'>축제사진정보</Link>
+                    <Link to="/ChargerInfo" className='hover:text-blue-200 font-bold cursor-pointer'>충전소정보</Link>
                 </ul>
             </nav>
         </header>

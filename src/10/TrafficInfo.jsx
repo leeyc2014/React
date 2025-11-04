@@ -15,7 +15,7 @@ export default function TrafficInfo({ infoData }) {
                                 className="
                                     flex flex-col items-center justify-center
                                     w-40 h-32
-                                    bg-gradient-to-br from-blue-100 to-blue-200
+                                    bg-linear-to-br from-blue-100 to-blue-200
                                     dark:from-blue-900 dark:to-blue-700
                                     text-gray-900 dark:text-gray-100
                                     rounded-lg shadow-md hover:shadow-xl

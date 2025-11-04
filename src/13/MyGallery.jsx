@@ -5,9 +5,10 @@ import { useState, useEffect, useRef } from "react";
 export default function MyGallery() {
   const [gdata, setGdata] = useState();
   const txtRef = useRef();
+  const moveRef = useRef();
   const [pageNo, setPageNo] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
-  const [numOfRows, setNumOfRows] = useState(10);
+  const [totalPage, setTotalPage] = useState(1);
 
   const getFetchData = async (txt, page) => {
     const apikey = import.meta.env.VITE_MV_DATA_API;
@@ -17,10 +18,11 @@ export default function MyGallery() {
     
     const resp = await fetch(url);
     const data = await resp.json();
+    const totalCnt = parseInt(data.response.body.totalCount);
     setGdata(data.response.body.items.item);
-    setTotalCount(data.response.body.totalCount);
-    setPageNo(data.response.body.pageNo);
-    setNumOfRows(data.response.body.numOfRows);
+    setPageNo(parseInt(data.response.body.pageNo));
+    setTotalCount(totalCnt);
+    setTotalPage(Math.ceil(totalCnt / 10));
   };
 
   const handleClick = () => {
@@ -31,6 +33,9 @@ export default function MyGallery() {
   const handleCancle = () => {
     txtRef.current.value = "";
     setGdata([]);
+    setTotalCount(0);   
+    setTotalPage(1);  
+    setPageNo(1);
   };
 
   const handlePrev = () => {
@@ -38,15 +43,22 @@ export default function MyGallery() {
   };
 
   const handleNext = () => {
-    const totalPage = Math.ceil(totalCount / numOfRows);
     if (pageNo < totalPage) getFetchData(txtRef.current.value, pageNo + 1);
+  };
+
+  const handleMove = () => {
+    const movePage = parseInt(moveRef.current.value);
+    if(!movePage || movePage < 1 || movePage > totalPage) {
+      return;
+    }
+    getFetchData(txtRef.current.value, movePage);
   };
 
   useEffect(() => {
     txtRef.current.focus();
   }, [])
 
-  const totalPage = Math.ceil(totalCount / numOfRows);
+  
 
   console.log(gdata)
   return (
@@ -69,6 +81,8 @@ export default function MyGallery() {
           <TailButton color="lime" caption="이전" onHandle={handlePrev} />
           <span className="font-bold">{pageNo} / {totalPage}</span>
           <TailButton color="lime" caption="다음" onHandle={handleNext} />
+          <input type="number" ref={moveRef} className="border border-gray-300 w-1/5" />
+          <TailButton color="lime" caption="이동" onHandle={handleMove} />
         </div>
       )}
     </div>
