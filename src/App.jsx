@@ -19,6 +19,8 @@ import MyFestGallery from './14/MyFestGallery';
 import MyFestContents from './14/MyFestContents'
 //import RouteMain from './15/RouteMain';
 import ChargerInfo from './16/ChargerInfo'
+import ChargerDetail from './16/ChargerDetail'
+import JotaiCnt from './17/JotaiCnt'
 
 function App() {
   //const [page, setPage] = useState(null);
@@ -36,6 +38,8 @@ function App() {
             <Route path='/MyFestGallery' element={<MyFestGallery />} />
             <Route path='/MyFestGallery/contents' element={<MyFestContents />} />
             <Route path='/ChargerInfo' element={<ChargerInfo />} />
+            <Route path='/ChargerName/detail' element={<ChargerDetail />} />
+            <Route path ='/Jotai' element={<JotaiCnt />} />
           </Routes>
         </main>
         <Footer />

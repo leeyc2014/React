@@ -1,53 +1,150 @@
-import TailSelect from "../components/TailSelect"
-import TailButton from "../components/TailButton"
-import { useState, useEffect } from "react"
 import zcode from "./zcode.json"
 import zscode from "./zscode.json"
 import kind from "./kind.json"
 import kinddetail from "./kinddetail.json"
+import stat from "./stat.json"
+
+import TailSelect from "../components/TailSelect"
+import TailButton from "../components/TailButton"
+import ChargerCard from "./ChargerCard"
+import ChargerName from "./chargerName"
+
+import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 
 export default function ChargerInfo() {
-    const [key1, setKey1] = useState();
-    const [value1, setValue1] = useState();
+    //상태변수
+    const [tdata, setTdata] = useState([]);
+    const [zsc, setZsc] = useState(null);
+    const [kindDetail, setKindDetail] = useState(null);
+    const [isLoding, setIsLoding] = useState(false);
 
-    const [key2, setKey2] = useState();
-    const [value2, setValue2] = useState();
+    //select 박스 
+    const sel1Ref = useRef();
+    const sel2Ref = useRef();
+    const sel3Ref = useRef();
+    const sel4Ref = useRef();
 
-    const [key3, setKey3] = useState();
-    const [value3, setValue3] = useState();
+    //데이터가져오기
+    const getFetchData = async () => {
+        const apikey = import.meta.env.VITE_MV_DATA_API;
+        let url = `http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?serviceKey=${apikey}&numOfRows=100&pageNo=1&zcode=${sel1Ref.current.value}&zscode=${sel2Ref.current.value}&kind=${sel3Ref.current.value}&kindDetail=${sel4Ref.current.value}&dataType=JSON`;
+        setIsLoding(true);
+        const resp = await fetch(url);
+        const data = await resp.json();
 
-    const [key4, setKey4] = useState();
-    const [value4, setValue4] = useState();
+        setTdata(data.items.item);
+        setIsLoding(false);
+        console.log(url)
+    }
 
+    //시도 선택
+    const handleZcode = () => {
+        setZsc(null);
+        setTdata([]);
+        setIsLoding(false);
+
+        if (sel1Ref.current.value == "")
+            setZsc(null);
+        else
+            setZsc(zscode[sel1Ref.current.value]);
+    }
+
+    //충전소 구분
+    const handleKind = () => {
+        setKindDetail(null);
+        setTdata([]);
+        setIsLoding(false);
+
+        console.log(sel3Ref.current.value, kinddetail[sel3Ref.current.value])
+        if (sel3Ref.current.value == "")
+            setKindDetail(null);
+        else
+            setKindDetail(kinddetail[sel3Ref.current.value]);
+    }
+
+    //취소 
+    const handleCancel = () => {
+        sel1Ref.current.value = "";
+        sel2Ref.current.value = "";
+        sel3Ref.current.value = "";
+        sel4Ref.current.value = "";
+
+        setZsc(null);
+        setKindDetail(null);
+        setTdata([]);
+        setIsLoding(false);
+    }
+
+    //검색
+    const handleSearch = () => {
+        if (sel1Ref.current.value == "") {
+            alert("시도를 선택하세요.");
+            sel1Ref.current.focus();
+            return;
+        }
+        if (sel2Ref.current.value == "") {
+            alert("지역동을 선택하세요.");
+            sel2Ref.current.focus();
+            return;
+        }
+        if (sel3Ref.current.value == "") {
+            alert("충전소 구분을 선택하세요.");
+            sel3Ref.current.focus();
+            return;
+        }
+        if (sel4Ref.current.value == "") {
+            alert("충전소 상세를 선택하세요.");
+            sel4Ref.current.focus();
+            return;
+        }
+
+        setTdata([]);
+        setIsLoding(false);
+        getFetchData();
+    }
+
+    // fetch가 완료되면
     useEffect(() => {
-        setValue1(Object.values(zcode))
-        setKey1(Object.keys(zcode));
-    }, [])
-    console.log(value1)
+        if (tdata.length == 0) return;
 
-    useEffect(() => {
-        setValue2(Object.values(key1 == Object.keys(zscode)));
-    }, [value1])
-
-    const handleClick = () => {
-
-    };
-
-    const handleCancle = () => {
-
-    };
+        console.log(tdata)
+    }, [tdata]);
 
     return (
         <div className="w-full flex flex-col justify-start items-center">
-            <h1 className="p-5 m-5 text-2xl font-bold text-start">전기차 충전소 정보</h1>
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-5">
-                <TailSelect id="sel1" title="시도" opk={key1} opv={value1} onHandle={() => { }} />
-                <TailSelect id="sel2" title="지역동" opk={key2} opv={value2} onHandle={() => { }} />
-                <TailSelect id="sel3" title="충전소구분" opk={key3} opv={value3} onHandle={() => { }} />
-                <TailSelect id="sel4" title="충전소상세" opk={key4} opv={value4} onHandle={() => { }} />
-                <TailButton color="blue" caption="검색" onHandle={handleClick} />
-                <TailButton color="orange" caption="취소" onHandle={handleCancle} />
+            <h1 className="w-full text-2xl font-bold p-5 mb-4 text-left">
+                전기차 충전소 정보
+            </h1>
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+                <TailSelect id="sel1" ref={sel1Ref} title="시도" opk={Object.keys(zcode)} opv={Object.values(zcode)} onHandle={handleZcode} />
+                <TailSelect id="sel2" ref={sel2Ref} title="지역동" opk={zsc ? Object.values(zsc) : ""} opv={zsc ? Object.keys(zsc) : ""} onHandle={() => { }} />
+                <TailSelect id="sel3" ref={sel3Ref} title="충전소구분" opk={Object.keys(kind)} opv={Object.values(kind)} onHandle={handleKind} />
+                <TailSelect id="sel4" ref={sel4Ref} title="충전소 상세" opk={kindDetail ? Object.values(kindDetail) : ""} opv={kindDetail ? Object.keys(kindDetail) : ""} onHandle={() => { }} />
+                <TailButton caption="검색" color="blue" onHandle={handleSearch} />
+                <TailButton caption="취소" color="orange" onHandle={handleCancel} />
             </div>
+            {
+                (tdata.length != 0) &&
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4 mt-5">
+                    <ChargerCard color="orange" title="충전소수" num={tdata.length} />
+                    {
+                        Object.keys(stat).map(scode => <ChargerCard key={stat[scode] + scode} color="blue" title={stat[scode]} num={tdata.filter(item => item.stat == scode).length} />)                       
+                    }
+                </div>
+            }
+            {
+                (tdata.length != 0) &&
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4 mt-5">
+                    {tdata.map((item, i) => (<Link to ="/ChargerName/detail" key={item.statId + i} state={{detail:item}}><ChargerName key={item.statId} name={item.statNm} detail={item.chgerId} /></Link>))}
+                </div>
+            }
+            {
+                isLoding && 
+                <div className="w-full p-5 mb-4 flex justify-center items-center">
+                    <img src="/img/loading.gif" alt="로딩중" />
+                </div>
+            }
         </div>
     )
 }
