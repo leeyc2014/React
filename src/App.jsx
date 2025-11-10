@@ -20,7 +20,8 @@ import MyFestContents from './14/MyFestContents'
 //import RouteMain from './15/RouteMain';
 import ChargerInfo from './16/ChargerInfo'
 import ChargerDetail from './16/ChargerDetail'
-import JotaiCnt from './17/JotaiCnt'
+// import JotaiCnt from './17/JotaiCnt'
+import TodoList from './18/ToDoList'
 
 function App() {
   //const [page, setPage] = useState(null);
@@ -39,7 +40,8 @@ function App() {
             <Route path='/MyFestGallery/contents' element={<MyFestContents />} />
             <Route path='/ChargerInfo' element={<ChargerInfo />} />
             <Route path='/ChargerName/detail' element={<ChargerDetail />} />
-            <Route path ='/Jotai' element={<JotaiCnt />} />
+            {/* <Route path ='/Jotai' element={<JotaiCnt />} /> */}
+            <Route path='/TodoList' element={<TodoList />} />
           </Routes>
         </main>
         <Footer />
