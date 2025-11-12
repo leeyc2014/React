@@ -21,7 +21,8 @@ import MyFestContents from './14/MyFestContents'
 import ChargerInfo from './16/ChargerInfo'
 import ChargerDetail from './16/ChargerDetail'
 // import JotaiCnt from './17/JotaiCnt'
-import TodoList from './18/ToDoList'
+//import TodoList from './18/ToDoList'
+import TodoList from './18_1/ToDoList'
 
 function App() {
   //const [page, setPage] = useState(null);
