@@ -7,7 +7,7 @@ import stat from "./stat.json"
 import TailSelect from "../components/TailSelect"
 import TailButton from "../components/TailButton"
 import ChargerCard from "./ChargerCard"
-import ChargerName from "./chargerName"
+import ChargerName from "./ChargerName"
 
 import { useEffect, useRef, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom"
