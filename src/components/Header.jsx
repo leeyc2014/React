@@ -16,6 +16,7 @@ export default function Header() {
                     <Link to="/ChargerInfo" className='hover:text-blue-200 font-bold cursor-pointer'>충전소정보</Link>
                     {/* <Link to="/Jotai" className='hover:text-blue-200 font-bold cursor-pointer'>Jotai</Link> */}
                     <Link to="/TodoList" className='hover:text-blue-200 font-bold cursor-pointer'>할일목록</Link>
+                    <Link to="/Subway" className='hover:text-blue-200 font-bold cursor-pointer'>부산지하철대기정보</Link>
                 </ul>
             </nav>
         </header>

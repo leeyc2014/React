@@ -26,7 +26,7 @@ export default function ChargerDetail() {
                 {detail.bnm} {detail.busiNm} {detail.busiCall}
             </div>
             <div className="p-5">
-                <TailButton color="blue" caption="목록으로" onHandle={() => navigate(`/ChargerInfo?loc=${detail.kindDetail}`)} />
+                <TailButton color="blue" caption="목록으로" onHandle={() => navigate(`/ChargerInfo`)} />
             </div>
         </div>
     )

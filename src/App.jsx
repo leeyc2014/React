@@ -22,7 +22,9 @@ import ChargerInfo from './16/ChargerInfo'
 import ChargerDetail from './16/ChargerDetail'
 // import JotaiCnt from './17/JotaiCnt'
 //import TodoList from './18/ToDoList'
-import TodoList from './18_1/ToDoList'
+import TodoList from './18_1/TodoList'
+import Subway from './19/subway'
+
 
 function App() {
   //const [page, setPage] = useState(null);
@@ -43,6 +45,7 @@ function App() {
             <Route path='/ChargerName/detail' element={<ChargerDetail />} />
             {/* <Route path ='/Jotai' element={<JotaiCnt />} /> */}
             <Route path='/TodoList' element={<TodoList />} />
+            <Route path='/Subway' element={<Subway />} />
           </Routes>
         </main>
         <Footer />

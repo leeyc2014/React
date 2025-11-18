@@ -10,16 +10,14 @@ import ChargerCard from "./ChargerCard"
 import ChargerName from "./chargerName"
 
 import { useEffect, useRef, useState } from "react"
-import { Link, useSearchParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function ChargerInfo() {
     //상태변수
     const [tdata, setTdata] = useState([]);
     const [zsc, setZsc] = useState(null);
     const [kindDetail, setKindDetail] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [loc, setLoc] = useState() ;
-    const [sParams] = useSearchParams(); 
+    const [isLoding, setIsLoding] = useState(false);
 
     //select 박스 
     const sel1Ref = useRef();
@@ -31,12 +29,12 @@ export default function ChargerInfo() {
     const getFetchData = async () => {
         const apikey = import.meta.env.VITE_MV_DATA_API;
         let url = `http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?serviceKey=${apikey}&numOfRows=100&pageNo=1&zcode=${sel1Ref.current.value}&zscode=${sel2Ref.current.value}&kind=${sel3Ref.current.value}&kindDetail=${sel4Ref.current.value}&dataType=JSON`;
-        setIsLoading(true);
+        setIsLoding(true);
         const resp = await fetch(url);
         const data = await resp.json();
 
         setTdata(data.items.item);
-        setIsLoading(false);
+        setIsLoding(false);
         console.log(url)
     }
 
@@ -44,7 +42,7 @@ export default function ChargerInfo() {
     const handleZcode = () => {
         setZsc(null);
         setTdata([]);
-        setIsLoading(false);
+        setIsLoding(false);
 
         if (sel1Ref.current.value == "")
             setZsc(null);
@@ -56,7 +54,7 @@ export default function ChargerInfo() {
     const handleKind = () => {
         setKindDetail(null);
         setTdata([]);
-        setIsLoading(false);
+        setIsLoding(false);
 
         console.log(sel3Ref.current.value, kinddetail[sel3Ref.current.value])
         if (sel3Ref.current.value == "")
@@ -75,7 +73,7 @@ export default function ChargerInfo() {
         setZsc(null);
         setKindDetail(null);
         setTdata([]);
-        setIsLoading(false);
+        setIsLoding(false);
     }
 
     //검색
@@ -102,7 +100,7 @@ export default function ChargerInfo() {
         }
 
         setTdata([]);
-        setIsLoading(false);
+        setIsLoding(false);
         getFetchData();
     }
 
@@ -112,19 +110,6 @@ export default function ChargerInfo() {
 
         console.log(tdata)
     }, [tdata]);
-
-    useEffect(() => {
-    // console.log(selRef.current.value)
-    if (sParams.get("loc") != "") {
-      console.log(sParams.get("loc"))
-      sel4Ref.current.value = sParams.get("loc") ;
-      setLoc(sParams.get("loc"));
-      handleKind();
-    }
-    else {
-      setLoc('') ;
-    }
-  } , [sParams, kindDetail]);
 
     return (
         <div className="w-full flex flex-col justify-start items-center">
@@ -155,7 +140,7 @@ export default function ChargerInfo() {
                 </div>
             }
             {
-                isLoading && 
+                isLoding && 
                 <div className="w-full p-5 mb-4 flex justify-center items-center">
                     <img src="/img/loading.gif" alt="로딩중" />
                 </div>
