@@ -23,7 +23,7 @@ import ChargerDetail from './16/ChargerDetail'
 // import JotaiCnt from './17/JotaiCnt'
 //import TodoList from './18/ToDoList'
 import TodoList from './18_1/TodoList'
-import Subway from './19/subway'
+import Subway from './19/Subway'
 
 
 function App() {
